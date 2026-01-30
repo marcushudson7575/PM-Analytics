@@ -24,3 +24,6 @@ Temporary Items
 
 # Microsoft Office temporary files
 ~$*
+git remote add origin https://github.com/marcushudson7575/Element-OS.git
+git branch -M main
+git push -u origin main
