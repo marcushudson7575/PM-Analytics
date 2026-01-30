@@ -6,7 +6,7 @@ PM Analytics is a comprehensive data platform designed to solve the private mark
 
 ## Problem Statement
 
-The private markets industry is renowned for messy, opaque, and inconsistent data, which limits GP and LPs from making informed decisions. As institutional investors increase allocations to private equity, private credit, infrastructure, and real assets, more transparency is being demanded.
+The private markets industry is renowned for messy, opaque, and inconsistent data, which limits GP and LPs from making informed decisions. As institutional investors increase allocations to private equity, private credit, infrastructure, and real assets, more transparency is being demanded. 
 
 ## Solution Overview
 
