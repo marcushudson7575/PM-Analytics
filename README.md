@@ -24,16 +24,15 @@ PM Analytics solves the private markets industry's data opacity problem by captu
 - **Validation**: Pydantic
 
 ### Frontend
-- **Framework**: React 18 + TypeScript
-- **Build Tool**: Vite
+- **Framework**: Next.js 14 + React 18 + TypeScript
 - **Styling**: Tailwind CSS
-- **State**: Zustand + React Query
-- **Charts**: Recharts
+- **Charts**: Custom SVG visualizations
+- **Export**: Static HTML/CSS/JS
 
 ### Deployment
-- **Frontend**: GitHub Pages (static hosting)
-- **Backend**: Railway.app (free tier)
-- **Database**: Railway PostgreSQL
+- **Frontend**: GitHub Pages (static hosting via GitHub Actions)
+- **Backend**: Railway.app (free tier) - for future API integration
+- **Database**: Railway PostgreSQL - for future API integration
 
 ## 🚀 Quick Start
 
@@ -119,18 +118,19 @@ PM Analytics solves the private markets industry's data opacity problem by captu
    npm install
    ```
 
-3. **Configure environment**
-   ```bash
-   # Create .env file
-   echo "VITE_API_BASE_URL=http://localhost:8000" > .env
-   ```
-
-4. **Start development server**
+3. **Start development server**
    ```bash
    npm run dev
    ```
 
-   Frontend will be available at: http://localhost:5173
+   Frontend will be available at: http://localhost:3000
+
+4. **Build for production (static export)**
+   ```bash
+   npm run build
+   ```
+
+   Static files will be generated in the `out` directory
 
 ## 📁 Project Structure
 
@@ -227,38 +227,45 @@ npm run test
 
 ### Deploy Frontend to GitHub Pages
 
-1. **Update vite.config.ts**
-   ```typescript
-   export default defineConfig({
-     base: '/pm-analytics/',  // Your repo name
-     // ... rest of config
-   });
+**Automatic Deployment (Recommended)**
+
+The project is configured for automatic deployment via GitHub Actions:
+
+1. **Enable GitHub Pages**
+   - Go to repository Settings → Pages
+   - Source: Select "GitHub Actions"
+
+2. **Push to main branch**
+   ```bash
+   git add .
+   git commit -m "Deploy PM Analytics to GitHub Pages"
+   git push origin main
    ```
 
-2. **Install gh-pages**
+3. **Monitor deployment**
+   - Go to the "Actions" tab in your repository
+   - Watch the "Deploy PM Analytics to GitHub Pages" workflow
+   - Once complete, your site will be live at: `https://yourusername.github.io/PM-Analytics/`
+
+**Manual Deployment (Alternative)**
+
+If you prefer to build and deploy manually:
+
+1. **Build the frontend**
    ```bash
    cd frontend
-   npm install --save-dev gh-pages
+   npm install
+   npm run build
    ```
 
-3. **Add deploy script to package.json**
-   ```json
-   {
-     "scripts": {
-       "deploy": "vite build && gh-pages -d dist"
-     }
-   }
-   ```
+2. **Deploy the `out` directory**
+   - The static files in `frontend/out` can be deployed to any static hosting service
+   - For GitHub Pages, use the GitHub Actions workflow (recommended)
 
-4. **Deploy**
-   ```bash
-   npm run deploy
-   ```
-
-5. **Enable GitHub Pages**
-   - Go to repository Settings → Pages
-   - Source: Deploy from branch `gh-pages`
-   - Your site: `https://yourusername.github.io/pm-analytics/`
+**Configuration Notes**
+- The `next.config.js` is pre-configured with `basePath: '/PM-Analytics'` for GitHub Pages
+- The `.github/workflows/deploy.yml` handles automatic builds and deployments
+- A `.nojekyll` file is included to ensure proper asset loading on GitHub Pages
 
 ## 🛠️ Development
 
